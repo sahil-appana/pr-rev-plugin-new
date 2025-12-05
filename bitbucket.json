@@ -6,7 +6,7 @@
     "name": "YourOrg",
     "url": "https://example.com"
   },
-  "baseUrl": "https://your-deploy-url.example.com",
+  "baseUrl": "https://pr-rev-plugin-new.onrender.com",
   "authentication": {
     "type": "jwt"
   },

@@ -65,6 +65,11 @@ async def webhook_pr(request: Request, x_event_key: Optional[str] = Header(None)
     return JSONResponse({"status": "review_posted" if posted else "review_generated"})
 
 
+@app.get('/health')
+async def health():
+    return JSONResponse({"status": "ok", "service": "ai-pr-reviewer", "qa_mode": Config.QA_MODE})
+
+
 async def _parse_json_request(request: Request) -> dict:
     try:
         return await request.json()
