@@ -1,0 +1,25 @@
+{
+  "naming_conventions": {
+    "enabled": true,
+    "description": "Check function and variable naming"
+  },
+  "security": {
+    "enabled": true,
+    "keywords": [
+      "eval(",
+      "exec(",
+      "password",
+      "api_key",
+      "secret"
+    ],
+    "description": "Flag insecure patterns"
+  },
+  "complexity": {
+    "enabled": true,
+    "max_function_length": 200
+  },
+  "comments": {
+    "enabled": true,
+    "min_ratio": 0.05
+  }
+}

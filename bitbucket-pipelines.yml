@@ -1,0 +1,10 @@
+image: python:3.10
+
+pipelines:
+  pull-requests:
+    '**':
+      - step:
+          name: AI Enterprise PR Reviewer
+          script:
+            - pip install -r requirements.txt
+            - python bot/main.py

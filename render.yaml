@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ai-pr-reviewer-web
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn bot.server:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: GEMINI_API_KEY
+      - key: GROQ_API_KEY
+      - key: BITBUCKET_TOKEN
+      - key: BITBUCKET_WORKSPACE
+      - key: BITBUCKET_REPO_SLUG
+      - key: BITBUCKET_PR_ID
+      - key: ENABLE_QA_INLINE_COMMENTS
+      - key: ENABLE_METRICS
+      - key: VERBOSE_LOGGING

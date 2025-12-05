@@ -1,0 +1,37 @@
+{
+  "key": "ai-pr-reviewer",
+  "name": "AI PR Reviewer (QA Mode)",
+  "description": "Automated QA-focused PR review app for Bitbucket.",
+  "vendor": {
+    "name": "YourOrg",
+    "url": "https://example.com"
+  },
+  "baseUrl": "https://your-deploy-url.example.com",
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/installed",
+    "uninstalled": "/uninstalled"
+  },
+  "hooks": [
+    {
+      "event": "pullrequest:created",
+      "url": "/webhook/pr"
+    },
+    {
+      "event": "pullrequest:updated",
+      "url": "/webhook/pr"
+    },
+    {
+      "event": "pullrequest:reopened",
+      "url": "/webhook/pr"
+    }
+  ],
+  "scopes": [
+    "pullrequest:read",
+    "pullrequest:write",
+    "repository:read",
+    "repository:write"
+  ]
+}
