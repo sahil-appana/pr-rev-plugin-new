@@ -4,6 +4,8 @@ import os
 import logging
 from typing import Optional
 
+from starlette.concurrency import run_in_threadpool
+
 from bot.core.logger import ReviewLogger
 from bot.core.reviewer_engine import ReviewerEngine
 from bot.core.bitbucket_api import BitbucketAPI
@@ -96,10 +98,11 @@ def _extract_repo_info(repo: dict, pr: dict):
     return workspace, repo_slug, pr_id
 
 
-def _resolve_diff_from_payload(api: BitbucketAPI, payload: dict) -> str:
+async def _resolve_diff_from_payload(api: BitbucketAPI, payload: dict) -> str:
     if 'pullrequest' in payload and payload['pullrequest'].get('links', {}).get('diff'):
         try:
-            return api.get_pr_diff()
+            # run blocking network call in threadpool to avoid blocking the event loop
+            return await run_in_threadpool(api.get_pr_diff)
         except Exception as e:
             logger.warning(f"Failed to fetch diff via API: {e}")
             return ''
