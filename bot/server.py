@@ -2,9 +2,8 @@ from fastapi import FastAPI, Request, Header, HTTPException
 from fastapi.responses import JSONResponse
 import os
 import logging
+import asyncio
 from typing import Optional
-
-from starlette.concurrency import run_in_threadpool
 
 from bot.core.logger import ReviewLogger
 from bot.core.reviewer_engine import ReviewerEngine
@@ -102,7 +101,7 @@ async def _resolve_diff_from_payload(api: BitbucketAPI, payload: dict) -> str:
     if 'pullrequest' in payload and payload['pullrequest'].get('links', {}).get('diff'):
         try:
             # run blocking network call in threadpool to avoid blocking the event loop
-            return await run_in_threadpool(api.get_pr_diff)
+            return await asyncio.to_thread(api.get_pr_diff)
         except Exception as e:
             logger.warning(f"Failed to fetch diff via API: {e}")
             return ''
