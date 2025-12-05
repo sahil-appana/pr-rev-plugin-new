@@ -11,21 +11,21 @@
     "type": "jwt"
   },
   "lifecycle": {
-    "installed": "/installed",
-    "uninstalled": "/uninstalled"
+    "installed": "https://pr-rev-plugin-new.onrender.com/installed",
+    "uninstalled": "https://pr-rev-plugin-new.onrender.com/uninstalled"
   },
   "hooks": [
     {
       "event": "pullrequest:created",
-      "url": "/webhook/pr"
+      "url": "https://pr-rev-plugin-new.onrender.com/webhook/pr"
     },
     {
       "event": "pullrequest:updated",
-      "url": "/webhook/pr"
+      "url": "https://pr-rev-plugin-new.onrender.com/webhook/pr"
     },
     {
       "event": "pullrequest:reopened",
-      "url": "/webhook/pr"
+      "url": "https://pr-rev-plugin-new.onrender.com/webhook/pr"
     }
   ],
   "scopes": [
